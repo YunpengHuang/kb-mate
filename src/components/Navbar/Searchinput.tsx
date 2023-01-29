@@ -1,3 +1,4 @@
+/* eslint-disable react/no-children-prop */
 import { PhoneIcon, Search2Icon, SearchIcon } from "@chakra-ui/icons";
 import { Flex, Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
 import React from "react";
