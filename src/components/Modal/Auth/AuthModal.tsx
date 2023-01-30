@@ -44,9 +44,8 @@ const AuthModal: React.FC = () => {
               align="center"
               justify={"center"}
               width="70%"
-              border={"1px solid red"}
             >
-              {/* {OAuthButtons} */}
+              <OAuthButtons />
             </Flex>
           </ModalBody>
         </ModalContent>
