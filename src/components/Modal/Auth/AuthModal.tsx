@@ -12,6 +12,7 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import { useRecoilState } from "recoil";
+import OAuthButtons from "./OAuthButtons";
 
 const AuthModal: React.FC = () => {
   const [modalState, setModalState] = useRecoilState(authModalState);
@@ -45,7 +46,7 @@ const AuthModal: React.FC = () => {
               width="70%"
               border={"1px solid red"}
             >
-                {/* {OAuthButtons} */}
+                {OAuthButtons}
             </Flex>
           </ModalBody>
         </ModalContent>
