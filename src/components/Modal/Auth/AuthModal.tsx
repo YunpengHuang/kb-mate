@@ -46,7 +46,7 @@ const AuthModal: React.FC = () => {
               width="70%"
               border={"1px solid red"}
             >
-                {OAuthButtons}
+              {/* {OAuthButtons} */}
             </Flex>
           </ModalBody>
         </ModalContent>
