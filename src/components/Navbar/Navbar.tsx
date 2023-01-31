@@ -1,3 +1,4 @@
+import { auth } from "@/src/firebase/clientApp";
 import { HamburgerIcon } from "@chakra-ui/icons";
 import {
   Flex,
@@ -8,10 +9,12 @@ import {
   MenuItem,
 } from "@chakra-ui/react";
 import React from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import RightContent from "./RightContent/RightContent";
 import Searchinput from "./Searchinput";
 
 const Navbar: React.FC = () => {
+  const [user, loading, error] = useAuthState(auth);
   return (
     <Flex bg={"white"} height="44px">
       <Flex align={"center"}>
@@ -29,7 +32,7 @@ const Navbar: React.FC = () => {
         </Menu> */}
       </Flex>
       <Searchinput />
-      <RightContent />
+      <RightContent user={user} />
     </Flex>
   );
 };
