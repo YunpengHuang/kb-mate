@@ -24,7 +24,7 @@ const Icons: React.FC = () => {
         borderRadius={4}
         _hover={{ bg: "gray.200" }}
       >
-        <Icon as={BsArrowUpRightCircle} />
+        <Icon as={BsArrowUpRightCircle} fontSize={20}/>
       </Flex>
       <Flex
         mr={1.5}
@@ -34,7 +34,17 @@ const Icons: React.FC = () => {
         borderRadius={4}
         _hover={{ bg: "gray.200" }}
       >
-        <Icon as={BsArrowUpRightCircle} />
+        <Icon as={IoFilterCircleOutline} fontSize={22}/>
+      </Flex>
+      <Flex
+        mr={1.5}
+        ml={1.5}
+        padding={1}
+        cursor="pointer"
+        borderRadius={4}
+        _hover={{ bg: "gray.200" }}
+      >
+        <Icon as={IoVideocamOutline} fontSize={22}/>
       </Flex>
     </Flex>
   );
