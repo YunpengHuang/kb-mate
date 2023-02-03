@@ -3,7 +3,6 @@ import React from "react";
 import { BsGraphUp, BsChatDots, BsBookmarkHeart } from "react-icons/bs";
 import { GoKeyboard } from "react-icons/go";
 //TODO maybe replace the login and logout with react-icons
-import { VscSignIn, VscSignOut } from "react-icons/vsc";
 import { CgProfile } from "react-icons/cg";
 
 const Icons: React.FC = () => {
