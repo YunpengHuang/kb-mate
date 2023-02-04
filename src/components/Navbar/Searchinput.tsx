@@ -1,17 +1,20 @@
 /* eslint-disable react/no-children-prop */
 import { PhoneIcon, Search2Icon, SearchIcon } from "@chakra-ui/icons";
 import { Flex, Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
+import { User } from "firebase/auth";
 import React from "react";
 
-type SearchinputProps = {};
+/* type SearchinputProps = {
+  user?: User | null;
+}; */
 
-const Searchinput: React.FC<SearchinputProps> = () => {
+const Searchinput: React.FC = () => {
   return (
-    <Flex flexGrow={1} mr={2} align="center">
+    <Flex flexGrow={1} mr={2} align="center" maxWidth={"600px"}>
       <InputGroup>
         <InputLeftElement
           pointerEvents="none"
-          children={<Search2Icon color="gray.300" mb={"1px"}/>}
+          children={<Search2Icon color="gray.300" mb={"1px"} />}
         />
         <Input
           placeholder="Search Keyboard"

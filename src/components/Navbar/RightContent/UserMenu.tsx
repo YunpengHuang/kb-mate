@@ -41,7 +41,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ user }) => {
           <Flex align={"center"}>
             <Flex align={"center"}>
               <>
-                <Avatar size={"xs"} src={user.photoURL} />
+                <Avatar size={"xs"} src={user.photoURL || ""} />
               </>
               <ChevronDownIcon />
             </Flex>

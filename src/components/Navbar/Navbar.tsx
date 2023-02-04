@@ -6,6 +6,8 @@ import RightContent from "./RightContent/RightContent";
 import Searchinput from "./Searchinput";
 import { AiOutlineHome } from "react-icons/ai";
 //BUG Dropdown menu getting cutoff
+//TODO Add onclick on home icon
+//TODO Maybe use hamburger menu instead of home icon (needs a new tsx file)
 
 const Navbar: React.FC = () => {
   const [user] = useAuthState(auth);
@@ -15,14 +17,14 @@ const Navbar: React.FC = () => {
       //FIXME temporary solution
       height="400px"
       padding={"6px 12px"}
-      justifyContent={{ md: "space-between" }}
+      justify={{md: "space-between"}}
     >
       <Flex
         align={"center"}
         width={{ base: "40px", md: "auto" }}
         mr={{ base: 0, md: 2 }}
       >
-        <Icon as={AiOutlineHome} />
+        <Icon as={AiOutlineHome} fontSize={22}/>
       </Flex>
       <Searchinput />
       <RightContent user={user} />
