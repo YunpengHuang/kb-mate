@@ -1,27 +1,34 @@
+import { authModalState } from "@/src/atoms/authModalAtom";
+import { auth } from "@/src/firebase/clientApp";
 import { ChevronDownIcon } from "@chakra-ui/icons";
 import {
+  Avatar,
+  Flex,
+  Icon,
   Menu,
   MenuButton,
-  Button,
-  MenuList,
-  MenuItem,
-  Icon,
-  Flex,
   MenuDivider,
+  MenuItem,
+  MenuList,
 } from "@chakra-ui/react";
-import { User } from "firebase/auth";
+import { signOut, User } from "firebase/auth";
 import React from "react";
-import { FaGoogle } from "react-icons/fa";
-import { VscAccount } from "react-icons/vsc";
-import { IoSparkles } from "react-icons/io5";
+import { BsBookmarkHeart } from "react-icons/bs";
 import { CgProfile } from "react-icons/cg";
-import { MdOutlineLogin } from "react-icons/md";
+import {
+  MdNoAccounts,
+  MdOutlineAccountCircle,
+  MdOutlineLogin,
+  MdOutlineLogout,
+} from "react-icons/md";
+import { useSetRecoilState } from "recoil";
 
 type UserMenuProps = {
   user?: User | null;
 };
 
 const UserMenu: React.FC<UserMenuProps> = ({ user }) => {
+  const setAuthModalState = useSetRecoilState(authModalState);
   return (
     <Menu>
       <MenuButton
@@ -34,47 +41,68 @@ const UserMenu: React.FC<UserMenuProps> = ({ user }) => {
           <Flex align={"center"}>
             <Flex align={"center"}>
               <>
-                <Icon as={FaGoogle} mr={1} fontSize={19} />
+                <Avatar size={"xs"} src={user.photoURL} />
               </>
               <ChevronDownIcon />
             </Flex>
           </Flex>
         ) : (
-          <Icon fontSize={24} color="gray.400" mr={1} as={VscAccount} />
+          <Icon fontSize={24} color="gray.400" mr={1} as={MdNoAccounts} />
         )}
       </MenuButton>
       <MenuList>
-        <MenuItem
-          fontSize="10pt"
-          fontWeight={700}
-          _hover={{ bg: "blue.500", color: "white" }}
-        >
-          <Flex align={"center"}>
-            <Icon fontSize={20} mr={2} as={CgProfile} />
-            Profile
-          </Flex>
-        </MenuItem>
-        <MenuItem
-          fontSize="10pt"
-          fontWeight={700}
-          _hover={{ bg: "blue.500", color: "white" }}
-        >
-          <Flex align={"center"}>
-            <Icon fontSize={20} mr={2} as={MdOutlineLogin} />
-            test
-          </Flex>
-        </MenuItem>
-        <MenuDivider/>
-        <MenuItem
-          fontSize="10pt"
-          fontWeight={700}
-          _hover={{ bg: "blue.500", color: "white" }}
-        >
-          <Flex align={"center"}>
-            <Icon fontSize={20} mr={2} as={CgProfile} />
-            test1
-          </Flex>
-        </MenuItem>
+        {user ? (
+          <>
+            {" "}
+            <MenuItem
+              fontSize="10pt"
+              fontWeight={700}
+              _hover={{ bg: "blue.500", color: "white" }}
+            >
+              <Flex align={"center"}>
+                <Icon fontSize={20} mr={2} as={CgProfile} />
+                Profile
+              </Flex>
+            </MenuItem>
+            <MenuItem
+              fontSize="10pt"
+              fontWeight={700}
+              _hover={{ bg: "blue.500", color: "white" }}
+            >
+              <Flex align={"center"}>
+                <Icon fontSize={20} mr={2} as={BsBookmarkHeart} />
+                Watchlist
+              </Flex>
+            </MenuItem>
+            <MenuDivider />
+            <MenuItem
+              fontSize="10pt"
+              fontWeight={700}
+              _hover={{ bg: "blue.500", color: "white" }}
+              onClick={() => signOut(auth)}
+            >
+              <Flex align={"center"}>
+                <Icon fontSize={20} mr={2} as={MdOutlineLogout} />
+                Logout
+              </Flex>
+            </MenuItem>
+          </>
+        ) : (
+          <>
+            {" "}
+            <MenuItem
+              fontSize="10pt"
+              fontWeight={700}
+              _hover={{ bg: "blue.500", color: "white" }}
+              onClick={() => setAuthModalState({ open: true, view: "login" })}
+            >
+              <Flex align={"center"}>
+                <Icon fontSize={20} mr={2} as={MdOutlineLogin} />
+                Login
+              </Flex>
+            </MenuItem>
+          </>
+        )}
       </MenuList>
     </Menu>
   );

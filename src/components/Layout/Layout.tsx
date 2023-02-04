@@ -9,7 +9,7 @@ const Layout = (props: LayoutProps) => {
   return (
     <>
       <Navbar />
-      <main>{props.children}</main>
+      {props.children}
     </>
   );
 };
