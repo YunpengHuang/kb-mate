@@ -1,15 +1,12 @@
 import { authModalState } from "@/src/atoms/authModalAtom";
 import { auth } from "@/src/firebase/clientApp";
 import {
-  Button,
   Flex,
   Modal,
   ModalBody,
   ModalCloseButton,
-  ModalContent,
-  ModalFooter,
-  ModalHeader,
-  ModalOverlay,
+  ModalContent, ModalHeader,
+  ModalOverlay
 } from "@chakra-ui/react";
 import React, { useEffect } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";

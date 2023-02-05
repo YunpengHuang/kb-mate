@@ -15,7 +15,7 @@ const Navbar: React.FC = () => {
     <Flex
       bg={"white"}
       //FIXME temporary solution
-      height="400px"
+      height={"600px"}
       padding={"6px 12px"}
       justify={{md: "space-between"}}
     >
