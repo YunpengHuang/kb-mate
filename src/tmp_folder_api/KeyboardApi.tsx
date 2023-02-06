@@ -21,7 +21,7 @@ const KeyboardApi: React.FC<KeyboardApiProps> = () => {
   //TODO link python api check for a valid keyboard name in the database
   const handleCreateKeyboardGroup = async () => {
     try {
-      const keyboardDocRef = doc(firestore, "keyboard", keyboardName);
+      const keyboardDocRef = doc(firestore, "keyboards", keyboardName);
 
       await runTransaction(firestore, async (transaction) => {
         const keyboardDoc = await transaction.get(keyboardDocRef);
