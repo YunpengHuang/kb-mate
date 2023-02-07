@@ -1,4 +1,6 @@
 import { Keyboard } from "@/src/atoms/keyboardatom";
+import Header from "@/src/components/Keyboard/Header";
+import NotFound from "@/src/components/Keyboard/NotFound";
 import { firestore } from "@/src/firebase/clientApp";
 import { doc, getDoc } from "firebase/firestore";
 import { GetServerSidePropsContext } from "next";
@@ -11,9 +13,13 @@ type KeyboardPageProps = {
 
 const KeyboardPage: React.FC<KeyboardPageProps> = ({ keyboardData }) => {
   if (!keyboardData) {
-    return <div>keyboard does not exist</div>;
+    return <NotFound/>;
   }
-  return <div>Keyboard is {keyboardData.id} </div>;
+  return (
+    <>
+    <Header keyboardData={keyboardData}/>
+    </>
+  );
 };
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
