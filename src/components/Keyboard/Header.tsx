@@ -31,14 +31,26 @@ const Header: React.FC<HeaderProps> = ({ keyboardData }) => {
                 <Icon as={VscInfo} />
               </Tooltip>
             </Flex>
-            <Flex>
+            <Flex mr={16}>
               <Text fontSize={"19px"}>Offer Range</Text>
               <Tooltip shouldWrapChildren label="test" placement="top-end">
                 <Icon as={VscInfo} />
               </Tooltip>
             </Flex>
+            <Flex mr={16}>
+              <Text fontSize={"19px"}>Highest</Text>
+              <Tooltip shouldWrapChildren label="test" placement="top-end">
+                <Icon as={VscInfo} />
+              </Tooltip>
+            </Flex>
+            <Flex mr={16}>
+              <Text fontSize={"19px"}>Lowest</Text>
+              <Tooltip shouldWrapChildren label="test" placement="top-end">
+                <Icon as={VscInfo} />
+              </Tooltip>
+            </Flex>
           </Flex>
-          <Icon as={favourited ? MdOutlineFavorite : MdOutlineFavoriteBorder} />
+          <Icon as={favourited ? MdOutlineFavorite : MdOutlineFavoriteBorder} fontSize={18} onClick={() => {}}/>
         </Flex>
       </Flex>
     </Flex>

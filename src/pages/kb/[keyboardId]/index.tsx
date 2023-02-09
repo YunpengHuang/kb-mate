@@ -1,10 +1,11 @@
 import { Keyboard } from "@/src/atoms/keyboardatom";
 import Header from "@/src/components/Keyboard/Header";
 import NotFound from "@/src/components/Keyboard/NotFound";
+import PageContent from "@/src/components/Layout/PageContent";
 import { firestore } from "@/src/firebase/clientApp";
 import { doc, getDoc } from "firebase/firestore";
 import { GetServerSidePropsContext } from "next";
-import React from "react";
+import React, { Children } from "react";
 import safejsonStringify from "safe-json-stringify";
 
 type KeyboardPageProps = {
@@ -18,6 +19,10 @@ const KeyboardPage: React.FC<KeyboardPageProps> = ({ keyboardData }) => {
   return (
     <>
     <Header keyboardData={keyboardData}/>
+    <PageContent>
+      <>the one</>
+      <>second</>
+    </PageContent>
     </>
   );
 };
