@@ -5,10 +5,11 @@ import {
   Modal,
   ModalBody,
   ModalCloseButton,
-  ModalContent, ModalHeader,
-  ModalOverlay
+  ModalContent,
+  ModalHeader,
+  ModalOverlay,
 } from "@chakra-ui/react";
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useRecoilState } from "recoil";
 import OAuthButtons from "./OAuthButtons";

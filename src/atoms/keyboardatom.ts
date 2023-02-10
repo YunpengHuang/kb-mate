@@ -24,6 +24,23 @@ export interface Keyboard {
     | "split"
     | "tkl"
     | "wkl";
-    buyCounter: number;
-    sellCounter: number;
+  buyCounter: number;
+  sellCounter: number;
 }
+
+interface KeyboardSnippet {
+  KeyboardId: string;
+}
+
+interface KeyboardState {
+  KbSnippets: KeyboardSnippet[];
+}
+
+const defaultKeyboardState: KeyboardState = {
+  KbSnippets: [],
+};
+
+export const keyboardState = atom<KeyboardState>({
+  key: "keyboardState",
+  default: defaultKeyboardState,
+});

@@ -3,6 +3,7 @@ import { Box, Button, Flex, Icon, Text, Tooltip } from "@chakra-ui/react";
 import React from "react";
 import { VscInfo } from "react-icons/vsc";
 import { MdOutlineFavorite, MdOutlineFavoriteBorder } from "react-icons/md";
+import useKeyboardData from "@/src/hooks/useKeyboardData";
 
 type HeaderProps = {
   keyboardData: Keyboard;
@@ -10,7 +11,11 @@ type HeaderProps = {
 
 //TODO Make this layout prettier
 const Header: React.FC<HeaderProps> = ({ keyboardData }) => {
-  const favourited = false;
+  const { keyboardStateValue, onHeartOrUnheartKeyboard } = useKeyboardData();
+
+  const hearted = !!keyboardStateValue.KbSnippets.find(
+    (item) => item.KeyboardId === keyboardData.id
+  );
   return (
     <Flex justify="center" width="100%" bg="blue.400" flexGrow={1}>
       <Flex width={"90%"} maxWidth="860px" border={"1px solid red"}>
@@ -50,7 +55,11 @@ const Header: React.FC<HeaderProps> = ({ keyboardData }) => {
               </Tooltip>
             </Flex>
           </Flex>
-          <Icon as={favourited ? MdOutlineFavorite : MdOutlineFavoriteBorder} fontSize={18} onClick={() => {}}/>
+          <Icon
+            as={hearted ? MdOutlineFavorite : MdOutlineFavoriteBorder}
+            fontSize={18}
+            onClick={() => onHeartOrUnheartKeyboard(keyboardData, hearted)}
+          />
         </Flex>
       </Flex>
     </Flex>
