@@ -5,7 +5,6 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import RightContent from "./RightContent/RightContent";
 import Searchinput from "./Searchinput";
 import { AiOutlineHome } from "react-icons/ai";
-//BUG Dropdown menu getting cutoff
 //TODO Add onclick on home icon
 //TODO Maybe use hamburger menu instead of home icon (needs a new tsx file)
 
@@ -14,7 +13,6 @@ const Navbar: React.FC = () => {
   return (
     <Flex
       bg={"white"}
-      //FIXME temporary solution
       height={"60px"}
       padding={"6px 12px"}
       justify={{md: "space-between"}}

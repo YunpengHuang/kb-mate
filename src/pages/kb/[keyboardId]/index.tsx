@@ -2,6 +2,7 @@ import { Keyboard } from "@/src/atoms/keyboardatom";
 import Header from "@/src/components/Keyboard/Header";
 import NotFound from "@/src/components/Keyboard/NotFound";
 import PageContent from "@/src/components/Layout/PageContent";
+import ProductCards from "@/src/components/ProductCards/ProductCards";
 import { firestore } from "@/src/firebase/clientApp";
 import { doc, getDoc } from "firebase/firestore";
 import { GetServerSidePropsContext } from "next";
@@ -23,6 +24,7 @@ const KeyboardPage: React.FC<KeyboardPageProps> = ({ keyboardData }) => {
       <>the one</>
       <>second</>
     </PageContent>
+    <ProductCards keyboardData={keyboardData}/>
     </>
   );
 };

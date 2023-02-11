@@ -28,16 +28,16 @@ export interface Keyboard {
   sellCounter: number;
 }
 
-interface KeyboardSnippet {
-  KeyboardId: string;
+export interface KeyboardSnippet {
+  keyboardId: string;
 }
 
 interface KeyboardState {
-  KbSnippets: KeyboardSnippet[];
+  kbSnippets: KeyboardSnippet[];
 }
 
 const defaultKeyboardState: KeyboardState = {
-  KbSnippets: [],
+  kbSnippets: [],
 };
 
 export const keyboardState = atom<KeyboardState>({

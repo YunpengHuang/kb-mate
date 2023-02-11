@@ -1,8 +1,8 @@
 import { Keyboard } from "@/src/atoms/keyboardatom";
-import { Box, Button, Flex, Icon, Text, Tooltip } from "@chakra-ui/react";
+import { Box, Icon, Flex, IconButton, Text, Tooltip } from "@chakra-ui/react";
 import React from "react";
 import { VscInfo } from "react-icons/vsc";
-import { MdOutlineFavorite, MdOutlineFavoriteBorder } from "react-icons/md";
+import { MdBookmark, MdBookmarkBorder } from "react-icons/md";
 import useKeyboardData from "@/src/hooks/useKeyboardData";
 
 type HeaderProps = {
@@ -11,10 +11,10 @@ type HeaderProps = {
 
 //TODO Make this layout prettier
 const Header: React.FC<HeaderProps> = ({ keyboardData }) => {
-  const { keyboardStateValue, onHeartOrUnheartKeyboard } = useKeyboardData();
+  const { keyboardStateValue, onHeartOrUnheartKeyboard, loading} = useKeyboardData();
 
-  const hearted = !!keyboardStateValue.KbSnippets.find(
-    (item) => item.KeyboardId === keyboardData.id
+  const hearted = !!keyboardStateValue.kbSnippets.find(
+    (item) => item.keyboardId === keyboardData.id
   );
   return (
     <Flex justify="center" width="100%" bg="blue.400" flexGrow={1}>
@@ -55,10 +55,12 @@ const Header: React.FC<HeaderProps> = ({ keyboardData }) => {
               </Tooltip>
             </Flex>
           </Flex>
+          {/* //TODO make this more fansy */}
           <Icon
-            as={hearted ? MdOutlineFavorite : MdOutlineFavoriteBorder}
-            fontSize={18}
+            as={hearted ? MdBookmark : MdBookmarkBorder}
+            fontSize={20}
             onClick={() => onHeartOrUnheartKeyboard(keyboardData, hearted)}
+            _hover={{bg: 'gray.400'}}
           />
         </Flex>
       </Flex>
