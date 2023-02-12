@@ -1,5 +1,5 @@
 import { authModalState } from "@/src/atoms/authModalAtom";
-import { keyboardState } from "@/src/atoms/keyboardatom";
+import { keyboardState } from "@/src/atoms/snippetAtom";
 import { auth } from "@/src/firebase/clientApp";
 import { ChevronDownIcon } from "@chakra-ui/icons";
 import {

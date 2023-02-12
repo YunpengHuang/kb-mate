@@ -1,8 +1,8 @@
-import { Keyboard } from "@/src/atoms/keyboardatom";
+import { KeyboardPartial } from "@/src/atoms/snippetAtom";
 import Header from "@/src/components/Keyboard/Header";
 import NotFound from "@/src/components/Keyboard/NotFound";
 import PageContent from "@/src/components/Layout/PageContent";
-import ProductCards from "@/src/components/ProductCards/ProductCards";
+import Products from "@/src/components/ProductCards/Products";
 import { firestore } from "@/src/firebase/clientApp";
 import { doc, getDoc } from "firebase/firestore";
 import { GetServerSidePropsContext } from "next";
@@ -10,7 +10,7 @@ import React, { Children } from "react";
 import safejsonStringify from "safe-json-stringify";
 
 type KeyboardPageProps = {
-  keyboardData: Keyboard;
+  keyboardData: KeyboardPartial;
 };
 
 const KeyboardPage: React.FC<KeyboardPageProps> = ({ keyboardData }) => {
@@ -24,7 +24,7 @@ const KeyboardPage: React.FC<KeyboardPageProps> = ({ keyboardData }) => {
       <>the one</>
       <>second</>
     </PageContent>
-    <ProductCards keyboardData={keyboardData}/>
+    <Products keyboardData={keyboardData}/>
     </>
   );
 };

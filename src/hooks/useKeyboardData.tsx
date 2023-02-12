@@ -10,10 +10,10 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { authModalState } from "../atoms/authModalAtom";
 import {
-  Keyboard,
+  KeyboardPartial,
   KeyboardSnippet,
   keyboardState,
-} from "../atoms/keyboardatom";
+} from "../atoms/snippetAtom";
 import { auth, firestore } from "../firebase/clientApp";
 
 const useKeyboardData = () => {
@@ -25,7 +25,7 @@ const useKeyboardData = () => {
   const [error, setError] = useState("");
 
   const onHeartOrUnheartKeyboard = (
-    keyboardData: Keyboard,
+    keyboardData: KeyboardPartial,
     hearted: boolean
   ) => {
     if (!user) {
@@ -41,7 +41,7 @@ const useKeyboardData = () => {
     heartKeyboard(keyboardData);
   };
 
-  const heartKeyboard = async (keyboardData: Keyboard) => {
+  const heartKeyboard = async (keyboardData: KeyboardPartial) => {
     try {
       const batch = writeBatch(firestore);
 
@@ -126,6 +126,7 @@ const useKeyboardData = () => {
     keyboardStateValue,
     onHeartOrUnheartKeyboard,
     loading,
+    setKeyboardStateValue,
   };
 };
 export default useKeyboardData;

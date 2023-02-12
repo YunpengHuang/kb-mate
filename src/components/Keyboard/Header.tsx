@@ -1,4 +1,4 @@
-import { Keyboard } from "@/src/atoms/keyboardatom";
+import { KeyboardPartial } from "@/src/atoms/snippetAtom";
 import { Box, Icon, Flex, IconButton, Text, Tooltip } from "@chakra-ui/react";
 import React from "react";
 import { VscInfo } from "react-icons/vsc";
@@ -6,7 +6,7 @@ import { MdBookmark, MdBookmarkBorder } from "react-icons/md";
 import useKeyboardData from "@/src/hooks/useKeyboardData";
 
 type HeaderProps = {
-  keyboardData: Keyboard;
+  keyboardData: KeyboardPartial;
 };
 
 //TODO Make this layout prettier
