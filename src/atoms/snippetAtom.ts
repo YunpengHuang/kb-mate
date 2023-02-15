@@ -14,7 +14,7 @@ interface KeyboardState {
   kbSnippets: KeyboardSnippet[];
 }
 
-const defaultKeyboardState: KeyboardState = {
+export const defaultKeyboardState: KeyboardState = {
   kbSnippets: [],
 };
 

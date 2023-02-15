@@ -34,7 +34,7 @@ interface CardState {
   cards: Card[];
 }
 
-const defaultCardState: CardState = {
+export const defaultCardState: CardState = {
   selectCard: null,
   cards: [],
 };

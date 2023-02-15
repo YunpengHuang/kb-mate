@@ -2,20 +2,21 @@ import { Card } from "@/src/atoms/cardAtom";
 import { KeyboardPartial } from "@/src/atoms/snippetAtom";
 import { auth, firestore } from "@/src/firebase/clientApp";
 import useCards from "@/src/hooks/useCards";
-import useKeyboardData from "@/src/hooks/useKeyboardData";
+import { HStack, Stack } from "@chakra-ui/react";
 import { collection, getDocs, orderBy, query, where } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import ProductItem from "./ProductItem";
 
 type ProductsProps = {
-  keyboardData: KeyboardPartial;
+  keyboardData: KeyboardPartial
 };
 
 const Products: React.FC<ProductsProps> = ({ keyboardData }) => {
+  console.log("keyboarddata", keyboardData)
   const [loading, setLoading] = useState(false);
-  const [user] = useAuthState(auth)
-  const {cardStateValue, setCardStateValue, onSelectCard} = useCards();
+  const [user] = useAuthState(auth);
+  const { cardStateValue, setCardStateValue, onSelectCard } = useCards();
   const getKeyboard = async () => {
     try {
       const keyboardQuery = query(
@@ -30,11 +31,13 @@ const Products: React.FC<ProductsProps> = ({ keyboardData }) => {
         ...doc.data(),
       }));
 
+      console.log("cards", cards);
+
       setCardStateValue((prev) => ({
         ...prev,
         cards: cards as Card[],
       }));
-      console.log("getkeyboard", cards)
+      console.log("getkeyboard", cards);
     } catch (error: any) {
       console.log("getKeyboard error", error.message);
     }
@@ -44,11 +47,18 @@ const Products: React.FC<ProductsProps> = ({ keyboardData }) => {
     getKeyboard();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  // {{
-  //   cardStateValue.cards.map((item) => (
-  //     <ProductItem keyboard={item} onSelectCard={onSelectCard} />
-  //   ));
-  // }}
-  return <></>;
+
+  return (
+    <HStack border={"1px solid green"}>
+      {cardStateValue.cards.map((card: Card, index) => (
+        <ProductItem
+          key={card.id}
+          card={card}
+          numberOfMembers={1}
+          onSelectCard={onSelectCard}
+        />
+      ))}
+    </HStack>
+  );
 };
 export default Products;

@@ -1,3 +1,4 @@
+import { Card } from "@/src/atoms/cardAtom";
 import { KeyboardPartial } from "@/src/atoms/snippetAtom";
 import Header from "@/src/components/Keyboard/Header";
 import NotFound from "@/src/components/Keyboard/NotFound";
@@ -11,6 +12,7 @@ import safejsonStringify from "safe-json-stringify";
 
 type KeyboardPageProps = {
   keyboardData: KeyboardPartial;
+  test: Card
 };
 
 const KeyboardPage: React.FC<KeyboardPageProps> = ({ keyboardData }) => {
@@ -24,7 +26,6 @@ const KeyboardPage: React.FC<KeyboardPageProps> = ({ keyboardData }) => {
       <>the one</>
       <>second</>
     </PageContent>
-    <Products keyboardData={keyboardData}/>
     </>
   );
 };
