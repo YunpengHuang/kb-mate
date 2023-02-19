@@ -3,7 +3,7 @@ import { atom } from "recoil";
 
 export type Card = {
   id: string;
-  createdAt?: Timestamp;
+  createdAt: Timestamp;
   keyboardSize:
     | "10"
     | "40"
@@ -27,7 +27,8 @@ export type Card = {
   buyCounter: number;
   sellCounter: number;
   watchlistmember: number;
-}
+  medianPrice: number;
+};
 
 interface CardState {
   selectCard: Card | null;

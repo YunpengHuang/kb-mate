@@ -7,7 +7,7 @@ type HomePageContentProps = {
 
 const HomePageContent: React.FC<HomePageContentProps> = ({ children }) => {
   return (
-    <Flex border={"1px solid red"} justify="center" height={'600px'}>
+    <Flex border={"1px solid red"} justify="center">
         {children}
     </Flex>
   );

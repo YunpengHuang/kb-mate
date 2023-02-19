@@ -46,6 +46,7 @@
     "firebase-functions": "^4.2.1",
     "husky": "^8.0.0",
     "lint-staged": "^13.1.0",
+    "moment": "^2.29.4",
     "prettier": "2.8.3",
     "react-icons": "^4.7.1",
     "safe-json-stringify": "^1.2.0"

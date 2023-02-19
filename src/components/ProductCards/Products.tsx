@@ -9,14 +9,14 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import ProductItem from "./ProductItem";
 
 type ProductsProps = {
-  keyboardData: KeyboardPartial
+  keyboardData: KeyboardPartial;
 };
 
 const Products: React.FC<ProductsProps> = ({ keyboardData }) => {
-  console.log("keyboarddata", keyboardData)
+  console.log("keyboarddata", keyboardData);
   const [loading, setLoading] = useState(false);
   const [user] = useAuthState(auth);
-  const { cardStateValue, setCardStateValue, onSelectCard } = useCards();
+  const { cardStateValue, setCardStateValue, onSelectCard, onHearted } = useCards();
   const getKeyboard = async () => {
     try {
       const keyboardQuery = query(
@@ -56,6 +56,9 @@ const Products: React.FC<ProductsProps> = ({ keyboardData }) => {
           card={card}
           numberOfMembers={1}
           onSelectCard={onSelectCard}
+// TODO add is in user watchlist function here
+          inUserWatchList={true}
+          onHearted={onHearted}
         />
       ))}
     </HStack>

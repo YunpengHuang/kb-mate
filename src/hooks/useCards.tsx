@@ -7,10 +7,13 @@ const useCards = () => {
 
   const onSelectCard = () => {};
 
+  const onHearted = () => {};
+
   return {
     cardStateValue,
     setCardStateValue,
     onSelectCard,
+    onHearted,
   };
 };
 export default useCards;
