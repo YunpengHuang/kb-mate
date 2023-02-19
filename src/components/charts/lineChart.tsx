@@ -1,4 +1,7 @@
 import React from "react";
+
+import { Line } from "react-chartjs-2";
+import zoomPlugin from "chartjs-plugin-zoom";
 import {
   Chart as ChartJS,
   LineElement,
@@ -17,14 +20,22 @@ ChartJS.register(
   PointElement,
   Title,
   Tooltip,
-  Legend
+  Legend,
+  zoomPlugin
 );
-
-import { Line } from "react-chartjs-2";
 
 type lineChartProps = {};
 
 const lineChart: React.FC<lineChartProps> = () => {
-  return <div>Have a good coding</div>;
+  const data = { labels: ["m", "w", "d"], datasets: [{ data: [1, 3, 4, 5] }] };
+  const options = {
+    responsive: true,
+    plugins: { title: { display: true, text: "test only" } },
+  };
+  return (
+    <>
+      <Line data={data} options={options} />
+    </>
+  );
 };
 export default lineChart;
