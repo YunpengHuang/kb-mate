@@ -62,14 +62,23 @@ export default function Home() {
 
   useEffect(() => {
     getHomeFeed();
+    // TODO fix use effect hook
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <HomePageContent>
       <>
-        <Grid templateColumns={"repeat(3, 1fr)"} gap={6}>
+        <Grid
+          templateColumns={[
+            "repeat(1, 1fr)",
+            "repeat(2, 1fr)",
+            "repeat(4, 1fr)",
+          ]}
+          gap={6}
+        >
           {cardStateValue.cards.map((card: Card, index) => (
-            <GridItem key={index} colSpan={1} rowSpan={1}>
+            <GridItem key={index}>
               <ProductItem
                 key={card.id}
                 card={card}
