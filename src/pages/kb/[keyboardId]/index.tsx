@@ -9,23 +9,27 @@ import { doc, getDoc } from "firebase/firestore";
 import { GetServerSidePropsContext } from "next";
 import React, { Children } from "react";
 import safejsonStringify from "safe-json-stringify";
+import LineChart from "@/src/components/charts/LineChart";
 
 type KeyboardPageProps = {
   keyboardData: KeyboardPartial;
-  test: Card
+  test: Card;
 };
 
 const KeyboardPage: React.FC<KeyboardPageProps> = ({ keyboardData }) => {
   if (!keyboardData) {
-    return <NotFound/>;
+    return <NotFound />;
   }
   return (
     <>
-    <Header keyboardData={keyboardData}/>
-    <PageContent>
-      <>the one</>
-      <>second</>
-    </PageContent>
+      <Header keyboardData={keyboardData} />
+      <PageContent>
+        <>
+          <LineChart keyboardData={keyboardData} />
+        </>
+
+        <>second</>
+      </PageContent>
     </>
   );
 };
