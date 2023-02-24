@@ -7,8 +7,15 @@ type HomePageContentProps = {
 
 const HomePageContent: React.FC<HomePageContentProps> = ({ children }) => {
   return (
-    <Flex direction={{base: "column", md:"row"}} flexWrap="wrap" border={"1px solid red"} justify="center" padding={"18px 30px"} width="85%" align={"center"}>
-        {children}
+    <Flex
+      // direction={{ base: "column", md: "row" }}
+      flexWrap="wrap"
+      border={"1px solid red"}
+      justify="center"
+      padding={"18px 30px"}
+      align={"center"}
+    >
+      {children}
     </Flex>
   );
 };

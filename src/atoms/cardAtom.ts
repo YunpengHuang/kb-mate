@@ -28,6 +28,7 @@ export type Card = {
   sellCounter: number;
   watchlistmember: number;
   medianPrice: number;
+  imageURL?: string;
 };
 
 interface CardState {
