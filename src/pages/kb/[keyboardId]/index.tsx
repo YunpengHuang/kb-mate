@@ -25,7 +25,7 @@ const KeyboardPage: React.FC<KeyboardPageProps> = ({ keyboardData }) => {
       <Header keyboardData={keyboardData} />
       <PageContent>
         <>
-          <LineChart keyboardData={keyboardData} />
+          {/* <LineChart keyboardData={keyboardData} /> */}
         </>
 
         <>second</>

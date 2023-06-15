@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { KeyboardPartial } from "@/src/atoms/snippetAtom";
 import { Flex } from "@chakra-ui/react";
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -19,9 +19,16 @@ type LineChartProps = {
 };
 
 // TODO placeholder right now, comeback to finish, victory (remember to remove other libraries)
+// use firebase query to retrieve the data, then render the data using victory
 const LineChart: React.FC<LineChartProps> = ({ keyboardData }) => {
   const [activeX, setActiveX] = useState();
   const [zoomDomain, setZoomDomain] = useState();
+
+  useEffect(()  => {
+    const fetchData = async () => {
+      const dataRef = keyboardData
+    }
+  })
 
   return (
     <>
@@ -40,7 +47,7 @@ const LineChart: React.FC<LineChartProps> = ({ keyboardData }) => {
       >
         <VictoryLine
           style={{
-            data: { stroke: "tomato" },
+            data: { stroke: "red" },
           }}
           data={[
             { x: new Date(1982, 1, 1), y: 125 },
@@ -69,9 +76,9 @@ const LineChart: React.FC<LineChartProps> = ({ keyboardData }) => {
           />
         }
       >
-        <VictoryAxis tickFormat={[]} />
+        <VictoryAxis tickFormat={(x) => new Date(x).getFullYear} />
         <VictoryLine
-          style={{ data: { stroke: "tomato" } }}
+          style={{ data: { stroke: "blue" } }}
           data={[
             { key: new Date(1982, 1, 1), b: 125 },
             { key: new Date(1987, 1, 1), b: 257 },
@@ -90,3 +97,49 @@ const LineChart: React.FC<LineChartProps> = ({ keyboardData }) => {
   );
 };
 export default LineChart;
+
+
+// example
+// TimeSeriesGraph.tsx
+/* import React, { useEffect } from 'react';
+import { VictoryChart, VictoryAxis, VictoryLine } from 'victory';
+import db from './firebase';
+import { useRecoilState } from 'recoil';
+import { timeSeriesData } from './atoms';
+
+const TimeSeriesGraph: React.FC = () => {
+  const [data, setData] = useRecoilState(timeSeriesData);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const dataRef = db.ref('your_data_path/');
+      dataRef.on('value', (snapshot) => {
+        let array: number[] = [];
+        snapshot.forEach((childSnapshot) => {
+          array.push(childSnapshot.val());
+        });
+        for (let x = 0; x <= array.length; x++) {
+          setData((prevState) => [
+            ...prevState,
+            { x: x, y: JSON.parse("[" + array + "]")[x] },
+          ]);
+        }
+      });
+    };
+
+    fetchData();
+  }, []);
+
+  return (
+    <VictoryChart>
+      <VictoryAxis
+        tickFormat={(x) => new Date(x).getHours() + ':' + new Date(x).getMinutes()}
+      />
+      <VictoryAxis dependentAxis />
+      <VictoryLine data={data} />
+    </VictoryChart>
+  );
+};
+
+export default TimeSeriesGraph;
+ */

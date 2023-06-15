@@ -9,6 +9,7 @@ const PageContent: React.FC<PageContentProps> = ({ children }) => {
   return (
     <Flex border={"1px solid green"} justify="center" padding="18px 0px">
       <Flex
+        bg={"white"}
         border={"1px solid red"}
         width="95%"
         justify={"center"}

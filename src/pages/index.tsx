@@ -19,8 +19,16 @@ import {
 } from "firebase/firestore";
 import useCards from "../hooks/useCards";
 import { Card } from "../atoms/cardAtom";
-import { Flex, Grid, GridItem, HStack, SimpleGrid, Stack } from "@chakra-ui/react";
+import {
+  Flex,
+  Grid,
+  GridItem,
+  HStack,
+  SimpleGrid,
+  Stack,
+} from "@chakra-ui/react";
 import ProductItem from "../components/ProductCards/ProductItem";
+import CardLoader from "../components/ProductCards/CardLoader";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -67,28 +75,36 @@ export default function Home() {
   }, []);
 
   return (
-      <HomePageContent>
-        <Grid
-          templateColumns={[
-            "repeat(1, 1fr)",
-            "repeat(2, 1fr)",
-            "repeat(4, 1fr)",
-          ]}
-          gap={6}
-          justifyContent="center"
-        >
-          {cardStateValue.cards.map((card: Card, index) => (
-            <GridItem key={index} border="1px solid blue">
-              <ProductItem
-                key={card.id}
-                card={card}
-                onSelectCard={onSelectCard}
-                inUserWatchList={true}
-                onHearted={onHearted}
-              />
-            </GridItem>
-          ))}
-        </Grid>
-      </HomePageContent>
+    <>
+      {loading ? (
+        <CardLoader />
+      ) : (
+        <HomePageContent>
+          <Grid
+            templateColumns={{
+              base: "repeat(1, 1fr)",
+              sm: "repeat(2, 1fr)",
+              md: "repeat(4, 1fr)",
+            }}
+            gap={6}
+            justifyContent="center"
+            width={"85%"}
+            height={"100%"}
+          >
+            {cardStateValue.cards.map((card: Card, index) => (
+              <GridItem key={index}>
+                <ProductItem
+                  key={card.id}
+                  card={card}
+                  onSelectCard={onSelectCard}
+                  inUserWatchList={true}
+                  onHearted={onHearted}
+                />
+              </GridItem>
+            ))}
+          </Grid>
+        </HomePageContent>
+      )}
+    </>
   );
 }

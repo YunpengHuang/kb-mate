@@ -10,7 +10,7 @@ import React from "react";
 
 const Searchinput: React.FC = () => {
   return (
-    <Flex flexGrow={1} mr={2} align="center" maxWidth={"600px"}>
+    <Flex flexGrow={1} align="center" maxWidth={"600px"}>
       <InputGroup>
         <InputLeftElement
           pointerEvents="none"
