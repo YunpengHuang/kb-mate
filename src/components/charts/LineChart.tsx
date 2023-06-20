@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import { KeyboardPartial } from "@/src/atoms/snippetAtom";
 import { Flex } from "@chakra-ui/react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from "@/src/firebase/clientApp";
+import { auth, firestore } from "@/src/firebase/clientApp";
+import { collection, getDocs, query, where } from "firebase/firestore";
 
 import {
   VictoryLine,
@@ -23,12 +24,27 @@ type LineChartProps = {
 const LineChart: React.FC<LineChartProps> = ({ keyboardData }) => {
   const [activeX, setActiveX] = useState();
   const [zoomDomain, setZoomDomain] = useState();
+  const [data, setData] = useState();
 
-  useEffect(()  => {
-    const fetchData = async () => {
-      const dataRef = keyboardData
-    }
-  })
+  useEffect(() => {
+    const fetchChartData = async () => {
+      const chartDataQuerey = query(
+        collection(firestore, "keyboards"),
+        where("keybordId", "==", keyboardData.id)
+      );
+      
+      const chartDocs = await getDocs(chartDataQuerey);
+      const chart = chartDocs.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+
+      
+    };
+    fetchChartData();
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>
@@ -97,7 +113,6 @@ const LineChart: React.FC<LineChartProps> = ({ keyboardData }) => {
   );
 };
 export default LineChart;
-
 
 // example
 // TimeSeriesGraph.tsx

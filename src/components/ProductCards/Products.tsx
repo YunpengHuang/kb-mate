@@ -16,37 +16,38 @@ const Products: React.FC<ProductsProps> = ({ keyboardData }) => {
   console.log("keyboarddata", keyboardData);
   const [loading, setLoading] = useState(false);
   const [user] = useAuthState(auth);
-  const { cardStateValue, setCardStateValue, onSelectCard, onHearted } = useCards();
-  const getKeyboard = async () => {
-    try {
-      const keyboardQuery = query(
-        collection(firestore, "keyboards"),
-        where("keyboardId", "==", keyboardData.id),
-        orderBy("createdAt", "desc")
-      );
-
-      const keyboardDocs = await getDocs(keyboardQuery);
-      const cards = keyboardDocs.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
-
-      console.log("cards", cards);
-
-      setCardStateValue((prev) => ({
-        ...prev,
-        cards: cards as Card[],
-      }));
-      console.log("getkeyboard", cards);
-    } catch (error: any) {
-      console.log("getKeyboard error", error.message);
-    }
-  };
+  const { cardStateValue, setCardStateValue, onSelectCard, onHearted } =
+    useCards();
 
   useEffect(() => {
+    const getKeyboard = async () => {
+      try {
+        const keyboardQuery = query(
+          collection(firestore, "keyboards"),
+          where("keyboardId", "==", keyboardData.id),
+          orderBy("createdAt", "desc")
+        );
+
+        const keyboardDocs = await getDocs(keyboardQuery);
+        const cards = keyboardDocs.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+
+        console.log("cards", cards);
+
+        setCardStateValue((prev) => ({
+          ...prev,
+          cards: cards as Card[],
+        }));
+        console.log("getkeyboard", cards);
+      } catch (error: any) {
+        console.log("getKeyboard error", error.message);
+      }
+    };
+
     getKeyboard();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [keyboardData.id, setCardStateValue]);
 
   return (
     <HStack border={"1px solid green"}>
@@ -56,7 +57,7 @@ const Products: React.FC<ProductsProps> = ({ keyboardData }) => {
           card={card}
           numberOfMembers={1}
           onSelectCard={onSelectCard}
-// TODO add is in user watchlist function here
+          // TODO add is in user watchlist function here
           inUserWatchList={true}
           onHearted={onHearted}
         />
